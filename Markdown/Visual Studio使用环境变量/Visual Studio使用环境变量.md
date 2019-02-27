@@ -6,7 +6,7 @@
 
 ​	控制面板->系统和安全->系统->高级系统设置->环境变量 进行用户变量或系统变量添加编辑
 
-![1551249430079](E:\MarkDown\Mymark\Visual Studio使用环境变量\1551249430079.png)
+![1551249430079](E:\MarkDown\MyNote\Markdown\Visual Studio使用环境变量\1551249430079.png)
 
 编辑完后环境变量不会立即生效
 
@@ -44,7 +44,7 @@ Example:E:\gitCodeRepository\Laser\  -> $(LASER_ROOT)\Laser
 
 在修改后注意观察包含目录下面一栏的 "计算的值" 当中的路径是否正确，是否是要添加的对应路径
 
-![1551249629167](E:\MarkDown\Mymark\Visual Studio使用环境变量\1551249629167.png)
+![1551249629167](E:\MarkDown\MyNote\Markdown\Visual Studio使用环境变量\1551249629167.png)
 
 # PS：
 
@@ -56,7 +56,7 @@ Example:E:\gitCodeRepository\Laser\  -> $(LASER_ROOT)\Laser
 
 
 
-![1551251887973](E:\MarkDown\Mymark\Visual Studio使用环境变量\%5CUsers%5CDAD%5CAppData%5CRoaming%5CTypora%5Ctypora-user-images%5C1551251887973.png)
+![1551251887973](E:\MarkDown\MyNote\Markdown\Visual Studio使用环境变量\%5CUsers%5CDAD%5CAppData%5CRoaming%5CTypora%5Ctypora-user-images%5C1551251887973.png)
 
 
 

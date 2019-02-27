@@ -4,7 +4,7 @@
 
 LNK2038	检测到“RuntimeLibrary”的不匹配项: 值“MDd_DynamicDebug”不匹配值“MTd_StaticDebug”(core.obj 中)	laser	E:\gitCodeRepository\Laser\urg_cpp.lib(Urg_driver.obj)  
 
-![1551258248908](E:\MarkDown\Mymark\error LNK2038 检测到RuntimeLibrary的不匹配项 值\%5CUsers%5CDAD%5CAppData%5CRoaming%5CTypora%5Ctypora-user-images%5C1551258248908.png)
+![1551258248908](E:\MarkDown\MyNote\Markdown\error LNK2038 检测到RuntimeLibrary的不匹配项 值\%5CUsers%5CDAD%5CAppData%5CRoaming%5CTypora%5Ctypora-user-images%5C1551258248908.png)
 
 对应的库文件为 urg_cpp.lib，解决方案文件生成 urg_cpp.lib时运行库为MDd，所以该库为MDd版本，而工程属性->C/C++->代码生成->运行库   配置为多线程调试 (/MTd)
 
@@ -54,11 +54,11 @@ Reusable Library Switch Library Macro(s) Defined
 
 ​	**若用CMAKE/VS解决方案生成工程文件**时，若CMAKE是用**MT**生成的（查看工程原始目录的CMakeLists.txt)，则它所调用的运行时库为：LIBCMT.lib，若生成的工程的运行时库（Runtime Library)你选择**MD**，则此工程在编译后链接的时候，将会调用动态运行时库：MSVCRT.lib + MSVCR80.DLL，明显，两次对同一个某运行时库里的函数调用的库不同，则会出现重定义的错误。**若此工程生成的是运行时库文件**，则其他工程调用此库时也必须是**MT**。（接下来对此进行验证，承接第1点说的错误）
 
-​	urg_cpp.lib生成的解决方案文件配置如下:由下图可见的确在Debug x64下运行库设置为**MDd**![1551270834956](E:\MarkDown\Mymark\error LNK2038 检测到RuntimeLibrary的不匹配项 值\%5CUsers%5CDAD%5CAppData%5CRoaming%5CTypora%5Ctypora-user-images%5C1551270834956.png)
+​	urg_cpp.lib生成的解决方案文件配置如下:由下图可见的确在Debug x64下运行库设置为**MDd**![1551270834956](E:\MarkDown\MyNote\Markdown\error LNK2038 检测到RuntimeLibrary的不匹配项 值\%5CUsers%5CDAD%5CAppData%5CRoaming%5CTypora%5Ctypora-user-images%5C1551270834956.png)
 
 再看Release x64版本下下运行库设置为**MD**
 
-![1551270911803](E:\MarkDown\Mymark\error LNK2038 检测到RuntimeLibrary的不匹配项 值\%5CUsers%5CDAD%5CAppData%5CRoaming%5CTypora%5Ctypora-user-images%5C1551270911803.png)
+![1551270911803](E:\MarkDown\MyNote\Markdown\error LNK2038 检测到RuntimeLibrary的不匹配项 值\%5CUsers%5CDAD%5CAppData%5CRoaming%5CTypora%5Ctypora-user-images%5C1551270911803.png)
 
 
 
