@@ -1,5 +1,7 @@
 # 1.2　配置网络服务和安全通信
 
+## 1.2.1
+
 配置静态IP ,使配置永久保持，需要
 
 编辑/etc/network/interfaces
@@ -27,9 +29,9 @@ nameserver 8.8.8.8
 
 
 
-## **注解**：
+### **注解**：
 
-### 编辑/etc/network/interfaces
+#### 编辑/etc/network/interfaces
 
 ```
 auto wlan0
@@ -51,7 +53,7 @@ dns-nameservers 114.114.114.114 8.8.8.8
 
 
 
-### 手动连接wifi配置
+#### 手动连接wifi配置
 
 此时reboot后，会出现wifi图标消失，此时似乎没有wifi连接，这时候无法上网，需要在/etc/network/interfaces，加上手动连接wifi配置：
 
@@ -97,7 +99,7 @@ dhclient wlan0
 
 
 
-### **最终一定要配置DNS**
+#### **最终一定要配置DNS**
 
 最需要注意的：
 
@@ -119,3 +121,58 @@ dhclient wlan0
 
 ------
 
+
+
+
+
+## 1.2.2 使用安全Shell保护通信安全
+
+​	理论上来说，每次安装服务器时SSH密钥（SSH Host Key）都是自动生成的，而生成出相同密钥的概率接近于0，这样避免了中间攻击等情况。但是，就是存在以下情况使得两台SSH密钥相同：
+
+- 在虚拟化技术中克隆了一台虚拟机；
+- 将原来的虚拟硬盘复制后新建虚拟机运行。
+
+​	可能遇到碰到的VPS云服务器重装系统复制完模板数据后不重新生成SSH密钥的，于是整个云平台所有的VPS都跑着相同的SSH密钥，如果要实现中间攻击只需要新建一台云就能获得私钥了。
+
+​	在测试过程中，为了最小化被目标网络检测到的可能，Kali不用任何外部监听网络服务。Kali用默认的SSH密钥进行预配置。在开启SSH服务前，禁用默认密钥，并生成一个唯一的密钥集以供使用。将默认的SSH密钥移动到备份文件夹，然后通过下列命令生成一个新的SSH密钥集：
+
+```
+dpkg-reconfigure openssh-server
+mkdir keys_default
+mv ssh_host_* keys_default
+```
+
+​	比较默认和新生成密钥的哈希值md5sum
+
+```
+md5sum ssh_host_*
+cd keys_default
+md5sum *
+```
+
+​	启动/终止SSH
+
+```
+/etc/init.d/ssh start
+/etc/init.d/ssh stop
+```
+
+​	查看SSH是否在运行
+
+```
+netstat -antp
+```
+
+# 1.3　更新Kali Linux
+
+​	Debian软件包管理系统：默认程序包资源库在目录/etc/apt/sources.list中，如果不存在，编辑sources.list文件，增加它们。dpkg是Debian的软件包管理系统，可以使用命令行来安装、移除和查询软件包。高级软件包工具（Advanced Packaging Tool，APT），通过搜索资源库、安装或者升级的软件包，以及所有需要的依赖性，来扩展dkpg的功能。APT也可以用来升级完整的版本。
+
+
+
+
+
+
+
+# 1.4　配置和自定义Kali Linux
+
+## 1.4.5　用TrueCrypt创建加密文件夹
